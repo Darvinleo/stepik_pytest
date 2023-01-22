@@ -1,6 +1,5 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
-from helpers.help_functions import price_extractor
 from selenium.common.exceptions import NoAlertPresentException
 import math
 
@@ -18,11 +17,11 @@ class ProductPage(BasePage):
 
     def get_product_price(self):
         raw_price = self.browser.find_element(*ProductPageLocators.MAIN_PRODUCT_PRICE).text
-        return price_extractor(raw_price)
+        return self.price_extractor(raw_price)
 
     def get_total_basket_price(self):
-        price_raw = self.browser.find_element(*ProductPageLocators.TOTAL_BASKET_PRICE).text
-        return price_extractor(price_raw)
+        raw_price = self.browser.find_element(*ProductPageLocators.TOTAL_BASKET_PRICE).text
+        return self.price_extractor(raw_price)
 
     def should_be_success_alert(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_ALERT), "No Success alert !"

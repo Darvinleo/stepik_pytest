@@ -14,4 +14,4 @@ class ProductPageLocators:
     TOTAL_BASKET_PRICE = (By.CSS_SELECTOR, "div.basket-mini")
     MAIN_PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")
     MAIN_PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
-    SUCCESS_ALERT = (By.CLASS_NAME, "alert-success")
+    SUCCESS_ALERT = (By.XPATH, "//*[@id='messages']/div[1]")
