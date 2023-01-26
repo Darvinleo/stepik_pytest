@@ -26,8 +26,12 @@ class ProductPage(BasePage):
     def should_be_success_alert(self):
         assert self.is_element_present(*ProductPageLocators.SUCCESS_ALERT), "No Success alert !"
 
-    def get_success_alert_text(self):
+    def get_success_alert_full_text(self):
         text = self.browser.find_element(*ProductPageLocators.SUCCESS_ALERT).text
+        return text
+
+    def get_product_name_from_success_alert(self):
+        text = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_FROM_SUCCESS_ALERT).text
         return text
 
     def solve_quiz_and_get_code(self):

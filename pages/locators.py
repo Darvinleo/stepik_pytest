@@ -15,3 +15,4 @@ class ProductPageLocators:
     MAIN_PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")
     MAIN_PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
     SUCCESS_ALERT = (By.XPATH, "//*[@id='messages']/div[1]")
+    PRODUCT_NAME_FROM_SUCCESS_ALERT = (By.XPATH, "//*[@id='messages']/div[1]/div/strong")
