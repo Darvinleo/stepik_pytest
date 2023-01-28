@@ -23,16 +23,24 @@ class ProductPage(BasePage):
         raw_price = self.browser.find_element(*ProductPageLocators.TOTAL_BASKET_PRICE).text
         return self.price_extractor(raw_price)
 
-    def should_be_success_alert(self):
-        assert self.is_element_present(*ProductPageLocators.SUCCESS_ALERT), "No Success alert !"
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ALERT), \
+            "Success message is presented, but should not be"
 
-    def get_success_alert_full_text(self):
+    def should_be_success_message(self):
+        assert self.is_element_present(
+            *ProductPageLocators.SUCCESS_ALERT), "Success message should disappear, but it's not"
+
+    def get_success_message_full_text(self):
         text = self.browser.find_element(*ProductPageLocators.SUCCESS_ALERT).text
         return text
 
-    def get_product_name_from_success_alert(self):
+    def get_product_name_from_success_message(self):
         text = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_FROM_SUCCESS_ALERT).text
         return text
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_ALERT), "Success message should disappear, but it not"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert

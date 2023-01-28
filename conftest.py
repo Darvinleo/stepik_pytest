@@ -27,7 +27,7 @@ def browser(request):
     else:
         raise ValueError(f"Can't open browser with name{browser}, 'chrome' or 'firefox' only available'")
     driver.maximize_window()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(3)
     request.addfinalizer(driver.close)
 
     return driver
