@@ -25,14 +25,11 @@ def test_guest_can_add_product_to_basket(browser, link):
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.should_bet_add_to_basket_btn()
-    main_product_name = product_page.get_product_name()
     product_page.add_to_basket()
     product_page.solve_quiz_and_get_code()
     product_page.should_be_success_message()
-    assert main_product_name == product_page.get_product_name_from_success_message(), \
-        "Product Name in Success Alert not the same as name in Product description"
-    assert product_page.get_product_price() == product_page.get_total_basket_price(), \
-        "Total basket price is not the same with added Product price"
+    product_page.check_product_names()
+    product_page.check_prices()
 
 
 test_url = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -111,11 +108,8 @@ class TestUserAddToBasketFromProductPage():
         product_page = ProductPage(browser, promo_link)
         product_page.open()
         product_page.should_bet_add_to_basket_btn()
-        main_product_name = product_page.get_product_name()
         product_page.add_to_basket()
         product_page.solve_quiz_and_get_code()
         product_page.should_be_success_message()
-        assert main_product_name == product_page.get_product_name_from_success_message(), \
-            "Product Name in Success Alert not the same as name in Product description"
-        assert product_page.get_product_price() == product_page.get_total_basket_price(), \
-            "Total basket price is not the same with added Product price"
+        product_page.check_product_names()
+        product_page.check_prices()

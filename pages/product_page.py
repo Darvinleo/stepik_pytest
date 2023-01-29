@@ -42,6 +42,14 @@ class ProductPage(BasePage):
     def should_disappear_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_ALERT), "Success message should disappear, but it not"
 
+    def check_product_names(self):
+        assert self.get_product_name() == self.get_product_name_from_success_message(), \
+            "Product Name in Success Alert not the same as name in Product description"
+
+    def check_prices(self):
+        assert self.get_product_price() == self.get_total_basket_price(), \
+            "Total basket price is not the same with added Product price"
+
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
